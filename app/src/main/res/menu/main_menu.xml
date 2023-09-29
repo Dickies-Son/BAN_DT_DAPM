@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:id="@+id/nav_1" android:title="Điện thoại"
+        android:icon="@drawable/baseline_mui_ten"/>
+
+    <item android:id="@+id/nav_2" android:title="Laptop"
+        android:icon="@drawable/baseline_mui_ten"/>
+
+    <group android:checkableBehavior="single">
+        <item android:title="Đăng xuất">
+            <menu>
+                <group>
+                    <item android:id="@+id/nav_3" android:title="Đăng Xuất"
+                        android:icon="@drawable/baseline_mui_ten"/>
+                </group>
+            </menu>
+        </item>
+    </group>
+
+</menu>
