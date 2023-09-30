@@ -12,11 +12,17 @@
         android:theme="@style/Theme.BAN_DT_DAPM"
         tools:targetApi="31">
         <activity
+            android:name=".Nguoi_Dung.DangKy"
+            android:exported="false" />
+        <activity
+            android:name=".Nguoi_Dung.DangNhap"
+            android:exported="false" />
+        <activity
             android:name=".Cac_Loai_San_Pham.Laptop"
             android:exported="false" />
         <activity
             android:name=".Cac_Loai_San_Pham.DienThoai"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

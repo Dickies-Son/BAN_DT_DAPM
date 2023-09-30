@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Nguoi_Dung.DangNhap"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/background_dang_nhap">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        android:background="@drawable/custom_dang_nhap">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="  Xin Chào !"
+                android:id="@+id/loginText"
+                android:textSize="36sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+            <EditText
+                android:id="@+id/sdt_dang_nhap"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_dang_nhap"
+                android:drawableLeft="@drawable/baseline_phone"
+                android:drawablePadding="8dp"
+                android:inputType="number"
+                android:hint="Nhập số điện thoại"
+                android:textSize="15dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="40dp"/>
+            <EditText
+                android:id="@+id/mat_khau_dang_nhap"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_dang_nhap"
+                android:drawableLeft="@drawable/baseline_o_khoa"
+                android:drawablePadding="8dp"
+                android:hint="Nhập mật khẩu"
+                android:textSize="15dp"
+                android:padding="8dp"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+            <Button
+                android:id="@+id/button_dangNhap"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Đăng Nhập"
+                android:textSize="18sp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/purple"
+                app:cornerRadius = "20dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:padding="8dp"
+        android:text="bạn chưa có tài khoản bấm vào đây để đăng ký"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:id="@+id/chua_co_tai_khoan_dang_ky"
+        android:textColor="@color/purple"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>

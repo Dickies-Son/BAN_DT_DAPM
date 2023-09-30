@@ -18,13 +18,15 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.example.ban_dt_dapm.Cac_Loai_San_Pham.DienThoai;
 import com.example.ban_dt_dapm.Cac_Loai_San_Pham.Laptop;
+import com.example.ban_dt_dapm.Nguoi_Dung.DangKy;
+import com.example.ban_dt_dapm.Nguoi_Dung.DangNhap;
 import com.example.ban_dt_dapm.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
     Button btnDangNhapC, btnDangKyC;
-    TextView ten_nguoi_dungC;
+    NavigationView navigationViewC;
 
     @Override
     public void setContentView(View view) {
@@ -42,8 +44,30 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.menu_drawer_open,R.string.menu_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+        //anh xa button va view navigation
+        navigationViewC = findViewById(R.id.nav_View);
+        View headerView = navigationViewC.getHeaderView(0);
+        btnDangNhapC = headerView.findViewById(R.id.button_dangNhap_0);
+        btnDangKyC = headerView.findViewById(R.id.button_dangKy_0);
+        // set su kien button
+        btnDangKyC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DrawerBaseActivity.this, DangKy.class);
+                startActivity(intent);
+            }
+        });
+        btnDangNhapC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DrawerBaseActivity.this, DangNhap.class);
+                startActivity(intent);
+            }
+        });
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
     // đếm stack để hiện thông báo thoát app
     public void onBackPressed() {
         int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
