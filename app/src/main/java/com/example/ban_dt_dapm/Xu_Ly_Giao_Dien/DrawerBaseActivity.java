@@ -10,12 +10,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.ban_dt_dapm.Cac_Loai_San_Pham.DienThoai;
 import com.example.ban_dt_dapm.Cac_Loai_San_Pham.Laptop;
 import com.example.ban_dt_dapm.Nguoi_Dung.DangKy;
@@ -104,6 +107,26 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         } else if (itemId == R.id.nav_2) {
             startActivity(new Intent(this, Laptop.class));
             overridePendingTransition(0,0);
+        }else if (itemId == R.id.nav_3) {
+            //admin
+            SharedPreferences sharedPreferences1 = getSharedPreferences("tennguoidung_admin", MODE_PRIVATE);
+            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+            //người dùng
+            SharedPreferences sharedPreferences = getSharedPreferences("tennguoidung", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            //admin
+            editor1.remove("tennguoidung_admin");
+            editor1.remove("loggedIn_admin");
+            //người dùng
+            editor.remove("tennguoidung");
+            editor.remove("loggedIn");
+            //
+            editor.apply();
+            editor1.apply();
+            Toast.makeText(this, "Bạn đã đăng xuất thành công", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, DienThoai.class));
+            overridePendingTransition(0,0);
+            finishAffinity();
         }
         return false;
     }
