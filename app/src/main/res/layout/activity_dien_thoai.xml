@@ -5,10 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Cac_Loai_San_Pham.DienThoai">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Chua co gi o trang ban dien thoai"/>
+
 
 </RelativeLayout>
