@@ -17,5 +17,6 @@ public class Laptop extends DrawerBaseActivity {
         activityLaptopBinding = ActivityLaptopBinding.inflate(getLayoutInflater());
         setContentView(activityLaptopBinding.getRoot());
         allocateActivityTitle("Trang Bán Laptop");
+        //asdasdas
     }
 }
