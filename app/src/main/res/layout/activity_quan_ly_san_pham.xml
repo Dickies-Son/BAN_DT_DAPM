@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Quan_Tri_Vien.QuanLySanPham"
+    android:background="@drawable/background_dang_anh">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        android:background="@drawable/custom_dang_nhap">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sản phẩm"
+                android:textSize="26sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/purple"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_anh_quan_cao">
+                <ImageView
+                    android:id="@+id/iv_anh_san_pham"
+                    android:layout_width="245dp"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_system_update_24"
+                    android:scaleType="centerCrop"/>
+            </LinearLayout>
+            <EditText
+                android:id="@+id/tv_ten_san_pham"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_dang_ky"
+                android:drawableLeft="@drawable/baseline_img_quancao"
+                android:drawablePadding="8dp"
+                android:hint="Nhập tên sản phẩm"
+                android:textSize="15dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+            <EditText
+                android:id="@+id/tv_gia_san_pham"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_dang_ky"
+                android:drawableLeft="@drawable/baseline_img_quancao"
+                android:drawablePadding="8dp"
+                android:hint="Nhập giá tiền sản phẩm"
+                android:textSize="15dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+            <EditText
+                android:id="@+id/tv_mo_ta_san_pham"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_dang_ky"
+                android:drawableLeft="@drawable/baseline_img_quancao"
+                android:drawablePadding="8dp"
+                android:hint="Nhập mô tả sản phẩm"
+                android:textSize="15dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+
+            <Button
+                android:id="@+id/button_chon_anh_san_pham"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Chọn hình ảnh"
+                android:textSize="18sp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/purple"
+                app:cornerRadius = "20dp"/>
+            <Button
+                android:id="@+id/button_luu_san_pham"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Lưu sản phẩm"
+                android:textSize="18sp"
+                android:backgroundTint="@color/purple"
+                app:cornerRadius = "20dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</ScrollView>

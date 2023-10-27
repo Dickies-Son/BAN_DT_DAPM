@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/nav_giohang" android:title="Giỏ Hàng"
+        android:icon="@drawable/baseline_gio_hang"
+        app:showAsAction="always"/>
+    <item android:id="@+id/nav_nguoidung" android:title="Người Dùng"
+        android:icon="@drawable/baseline_nguoi_dung_outline"
+        app:showAsAction="always"/>
+</menu>
