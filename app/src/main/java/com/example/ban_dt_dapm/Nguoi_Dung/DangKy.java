@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ban_dt_dapm.R;
-import com.example.ban_dt_dapm.Xu_Ly_Giao_Dien.get_set_nguoi_dung;
+import com.example.ban_dt_dapm.Xy_Ly_Danh_Sach.get_set_nguoi_dung;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

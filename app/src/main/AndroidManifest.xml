@@ -12,6 +12,15 @@
         android:theme="@style/Theme.BAN_DT_DAPM"
         tools:targetApi="31">
         <activity
+            android:name=".QuanLySanPham"
+            android:exported="false" />
+        <activity
+            android:name=".NguoiDung"
+            android:exported="false" />
+        <activity
+            android:name=".GioHang"
+            android:exported="false" />
+        <activity
             android:name=".Nguoi_Dung.DangKy"
             android:exported="false" />
         <activity

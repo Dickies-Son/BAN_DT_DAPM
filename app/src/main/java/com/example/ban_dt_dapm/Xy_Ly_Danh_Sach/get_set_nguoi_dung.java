@@ -1,4 +1,4 @@
-package com.example.ban_dt_dapm.Xu_Ly_Giao_Dien;
+package com.example.ban_dt_dapm.Xy_Ly_Danh_Sach;
 
 public class get_set_nguoi_dung {
     String ten;
