@@ -12,13 +12,13 @@
         android:theme="@style/Theme.BAN_DT_DAPM"
         tools:targetApi="31">
         <activity
-            android:name=".QuanLySanPham"
+            android:name=".Quan_Tri_Vien.QuanLySanPham"
             android:exported="false" />
         <activity
-            android:name=".NguoiDung"
+            android:name=".Nguoi_Dung.NguoiDung"
             android:exported="false" />
         <activity
-            android:name=".GioHang"
+            android:name=".Nguoi_Dung.GioHang"
             android:exported="false" />
         <activity
             android:name=".Nguoi_Dung.DangKy"

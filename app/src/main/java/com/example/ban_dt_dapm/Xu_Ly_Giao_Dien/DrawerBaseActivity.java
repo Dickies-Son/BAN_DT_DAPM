@@ -27,6 +27,7 @@ import com.example.ban_dt_dapm.Nguoi_Dung.DangKy;
 import com.example.ban_dt_dapm.Nguoi_Dung.DangNhap;
 import com.example.ban_dt_dapm.Nguoi_Dung.GioHang;
 import com.example.ban_dt_dapm.Nguoi_Dung.NguoiDung;
+import com.example.ban_dt_dapm.Quan_Tri_Vien.QuanLySanPham;
 import com.example.ban_dt_dapm.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -113,7 +114,10 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         } else if (itemId == R.id.nav_2) {
             startActivity(new Intent(this, Laptop.class));
             overridePendingTransition(0,0);
-        }else if (itemId == R.id.nav_3) {
+        } else if (itemId == R.id.nav_4) {
+            startActivity(new Intent(this, QuanLySanPham.class));
+            overridePendingTransition(0, 0);
+        } else if (itemId == R.id.nav_3) {
             //admin
             SharedPreferences sharedPreferences1 = getSharedPreferences("tennguoidung_admin", MODE_PRIVATE);
             SharedPreferences.Editor editor1 = sharedPreferences1.edit();
