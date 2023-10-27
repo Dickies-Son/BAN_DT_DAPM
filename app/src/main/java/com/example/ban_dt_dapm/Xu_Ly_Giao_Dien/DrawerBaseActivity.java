@@ -71,7 +71,7 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
-    // đếm stack để hiện thông báo thoát app
+    // đếm stack để hiện thông báo thoát
     public void onBackPressed() {
         int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
         if (backStackCount == 0) {
