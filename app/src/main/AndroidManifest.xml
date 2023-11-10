@@ -12,6 +12,9 @@
         android:theme="@style/Theme.BAN_DT_DAPM"
         tools:targetApi="31">
         <activity
+            android:name=".DanhSachTaiKhoan"
+            android:exported="false" />
+        <activity
             android:name=".Quan_Tri_Vien.QuanLySanPham"
             android:exported="false" />
         <activity

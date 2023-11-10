@@ -4,11 +4,31 @@ public class get_set_nguoi_dung {
     String ten;
     String so_dien_thoai;
     String mat_khau;
+    String dia_chi;
+    String gio_hang;
 
-    public get_set_nguoi_dung(String ten, String so_dien_thoai, String mat_khau) {
+    public get_set_nguoi_dung(String ten, String so_dien_thoai, String mat_khau,String dia_chi,String gio_hang) {
         this.ten = ten;
         this.so_dien_thoai = so_dien_thoai;
         this.mat_khau = mat_khau;
+        this.dia_chi = dia_chi;
+        this.gio_hang = gio_hang;
+    }
+
+    public String getGio_hang() {
+        return gio_hang;
+    }
+
+    public void setGio_hang(String gio_hang) {
+        this.gio_hang = gio_hang;
+    }
+
+    public String getDia_chi() {
+        return dia_chi;
+    }
+
+    public void setDia_chi(String dia_chi) {
+        this.dia_chi = dia_chi;
     }
 
     public String getTen() {

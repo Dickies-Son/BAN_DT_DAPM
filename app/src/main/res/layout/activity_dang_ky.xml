@@ -58,6 +58,19 @@
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="20dp"/>
             <EditText
+                android:id="@+id/dia_chi_giao_hang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/custom_dang_ky"
+                android:drawableLeft="@drawable/baseline_phone"
+                android:drawablePadding="8dp"
+                android:hint="Địa chỉ giao hàng của bạn"
+                android:textSize="15dp"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="20dp"/>
+            <EditText
                 android:id="@+id/mat_khau_dang_ky"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

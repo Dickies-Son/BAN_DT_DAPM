@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DangKy extends AppCompatActivity {
-    EditText username_dang_kyC,sdt_dang_kyC,mat_khau_dang_kyC,re_mat_khau_dang_kyC;
+    EditText username_dang_kyC,sdt_dang_kyC,mat_khau_dang_kyC,re_mat_khau_dang_kyC,dia_chi_giao_hangC;
     Button button_dangKyC,button_da_co_tai_khoan_dang_nhapC;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -34,6 +34,7 @@ public class DangKy extends AppCompatActivity {
         sdt_dang_kyC = findViewById(R.id.sdt_dang_ky);
         mat_khau_dang_kyC = findViewById(R.id.mat_khau_dang_ky);
         re_mat_khau_dang_kyC = findViewById(R.id.re_mat_khau_dang_ky);
+        dia_chi_giao_hangC = findViewById(R.id.dia_chi_giao_hang);
         button_dangKyC = findViewById(R.id.button_dangKy);
         button_da_co_tai_khoan_dang_nhapC = findViewById(R.id.da_co_tai_khoan_dang_nhap);
         button_dangKyC.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +45,7 @@ public class DangKy extends AppCompatActivity {
 
                 String ten = username_dang_kyC.getText().toString();
                 String so_dien_thoai = sdt_dang_kyC.getText().toString();
+                String dia_chi = dia_chi_giao_hangC.getText().toString();
                 String mat_khau = mat_khau_dang_kyC.getText().toString();
                 String re_mat_khau = re_mat_khau_dang_kyC.getText().toString();
 
@@ -58,7 +60,11 @@ public class DangKy extends AppCompatActivity {
                     Toast.makeText(DangKy.this, "Số điện thoại phải là 10 chữ nha", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
+                if (TextUtils.isEmpty(dia_chi)) {
+                    dia_chi_giao_hangC.setError("Hãy nhập địa chỉ");
+                    Toast.makeText(DangKy.this, "Nhập địa chỉ vào đi nè", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (mat_khau.length() < 6) {
                     mat_khau_dang_kyC.setError("Mật khẩu tối thiểu 6 ký tự");
                     Toast.makeText(DangKy.this, "Mật khẩu tối thiểu 6 ký tự nha", Toast.LENGTH_SHORT).show();
@@ -81,7 +87,7 @@ public class DangKy extends AppCompatActivity {
                             Toast.makeText(DangKy.this, "Số điện thoại đã được đăng ký", Toast.LENGTH_SHORT).show();
                         } else {
                             // Số điện thoại chưa tồn tại, thêm thông tin người dùng mới vào Firebase Realtime Database
-                            get_set_nguoi_dung nguoi_dung = new get_set_nguoi_dung(ten, so_dien_thoai, mat_khau);
+                            get_set_nguoi_dung nguoi_dung = new get_set_nguoi_dung(ten, so_dien_thoai, mat_khau,dia_chi,"");
                             reference.child(so_dien_thoai).setValue(nguoi_dung);
                             Toast.makeText(DangKy.this, "Chúc mừng bạn đã đăng ký thành công", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(DangKy.this, DangNhap.class);
