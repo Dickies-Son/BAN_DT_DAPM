@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,14 +28,19 @@ import com.example.ban_dt_dapm.Nguoi_Dung.DangKy;
 import com.example.ban_dt_dapm.Nguoi_Dung.DangNhap;
 import com.example.ban_dt_dapm.Nguoi_Dung.GioHang;
 import com.example.ban_dt_dapm.Nguoi_Dung.NguoiDung;
+import com.example.ban_dt_dapm.Quan_Tri_Vien.DanhSachTaiKhoan;
 import com.example.ban_dt_dapm.Quan_Tri_Vien.QuanLySanPham;
 import com.example.ban_dt_dapm.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class DrawerBaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout drawerLayout;
-    Button btnDangNhapC, btnDangKyC;
     NavigationView navigationViewC;
+    Button btnDangNhapC, btnDangKyC;
+    TextView ten_nguoi_dungC;
+    LinearLayout layout_2C;
+    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences_admin;
 
     @Override
     public void setContentView(View view) {
@@ -54,12 +60,15 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         toggle.syncState();
         // doi mau` hambuger ( Them cho nay ) ######
         toggle.getDrawerArrowDrawable().setColor(ContextCompat.getColor(this, R.color.black));
+        //an StatusBar System
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //anh xa button va view navigation
         navigationViewC = findViewById(R.id.nav_View);
         View headerView = navigationViewC.getHeaderView(0);
         btnDangNhapC = headerView.findViewById(R.id.button_dangNhap_0);
         btnDangKyC = headerView.findViewById(R.id.button_dangKy_0);
-        // set su kien button
+        ten_nguoi_dungC = headerView.findViewById(R.id.ten_nguoi_dung);
+        layout_2C = headerView.findViewById(R.id.layout_2);
         btnDangKyC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,8 +83,32 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
                 startActivity(intent);
             }
         });
+        //set su kien view
+        //view nguoi dung
+        sharedPreferences = getSharedPreferences("ten_nguoi_dung", MODE_PRIVATE);
+        String tennguoidung = sharedPreferences.getString("ten_nguoi_dung", "");
+        if (!tennguoidung.isEmpty()) {
+            ten_nguoi_dungC.setText("Xin chào, " + tennguoidung);
+            navigationView.getMenu().findItem(R.id.nav_4).setVisible(false);
+            navigationView.getMenu().findItem(R.id.nav_5).setVisible(false);
+            layout_2C.setVisibility(View.GONE);
+        } else {
+            // view admin
+            sharedPreferences_admin = getSharedPreferences("ten_nguoi_dung_admin", MODE_PRIVATE);
+            String tennguoidung_admin = sharedPreferences_admin.getString("ten_nguoi_dung_admin", "");
+            if (!tennguoidung_admin.isEmpty()) {
+                ten_nguoi_dungC.setText("Xin chào, " + tennguoidung_admin);
+                layout_2C.setVisibility(View.GONE);
+            } else {
+                // view nguoi dung chua dang nhap
+                ten_nguoi_dungC.setText("");
+                btnDangNhapC.setVisibility(View.VISIBLE);
+                btnDangKyC.setVisibility(View.VISIBLE);
+                navigationView.getMenu().findItem(R.id.nav_4).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_5).setVisible(false);
+            }
+        }
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     // đếm stack để hiện thông báo thoát
@@ -114,29 +147,12 @@ public class DrawerBaseActivity extends AppCompatActivity implements NavigationV
         } else if (itemId == R.id.nav_2) {
             startActivity(new Intent(this, Laptop.class));
             overridePendingTransition(0,0);
-        } else if (itemId == R.id.nav_4) {
+        }else if (itemId == R.id.nav_4) {
             startActivity(new Intent(this, QuanLySanPham.class));
-            overridePendingTransition(0, 0);
-        } else if (itemId == R.id.nav_3) {
-            //admin
-            SharedPreferences sharedPreferences1 = getSharedPreferences("tennguoidung_admin", MODE_PRIVATE);
-            SharedPreferences.Editor editor1 = sharedPreferences1.edit();
-            //người dùng
-            SharedPreferences sharedPreferences = getSharedPreferences("tennguoidung", MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            //admin
-            editor1.remove("tennguoidung_admin");
-            editor1.remove("loggedIn_admin");
-            //người dùng
-            editor.remove("tennguoidung");
-            editor.remove("loggedIn");
-            //
-            editor.apply();
-            editor1.apply();
-            Toast.makeText(this, "Bạn đã đăng xuất thành công", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, DienThoai.class));
             overridePendingTransition(0,0);
-            finishAffinity();
+        }else if (itemId == R.id.nav_5) {
+            startActivity(new Intent(this, DanhSachTaiKhoan.class));
+            overridePendingTransition(0,0);
         }
         return false;
     }

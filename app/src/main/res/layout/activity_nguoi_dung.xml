@@ -1,9 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Nguoi_Dung.NguoiDung">
+    tools:context=".Nguoi_Dung.NguoiDung"
+    android:id="@+id/relative_layout_tong">
+    <RelativeLayout
+        android:id="@+id/layout_relative_1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/relative_layout_nguoidung_1"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="10dp"
+            android:background="@drawable/custom_drawer_header">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/iv_nguoiDung"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/baseline_icon_nguoi_dung" />
+                <TextView
+                    android:id="@+id/tv_TenNguoiDung_layout_nguoidung_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nguyen Hoang Duc"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_toEndOf="@+id/iv_nguoiDung"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/layout_button_1"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    android:layout_below="@+id/tv_TenNguoiDung_layout_nguoidung_1"
+                    android:layout_toEndOf="@+id/iv_nguoiDung"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp">
+
+                    <Button
+                        android:id="@+id/button_dangxuat_layout_nguoidung"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="80dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:text="Đăng xuất"
+                        android:textColor="@color/black"
+                        android:textSize="10dp" />
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="10dp"
+                    android:layout_below="@+id/tv_TenNguoiDung_layout_nguoidung_1"
+                    android:layout_toEndOf="@+id/layout_button_1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp">
+
+                    <Button
+                        android:id="@+id/button_chinhsua_layout_nguoidung"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="80dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:text="Chỉnh sửa"
+                        android:textColor="@color/black"
+                        android:textSize="10dp" />
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@id/relative_layout_nguoidung_1">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <!--thong tin lien he-->
+                    <LinearLayout
+                        android:id="@+id/layout_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:text="Thông tin liên hệ của bạn:" />
+                    </LinearLayout>
+                    <!--Ten-->
+                    <LinearLayout
+                        android:id="@+id/layout_ho_va_ten"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_below="@+id/layout_contact">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Họ và tên: "
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/tv_TenNguoiDung_layout_nguoidung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ho va ten o day"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+                    <!--diachi-->
+                    <LinearLayout
+                        android:id="@+id/layout_dia_chi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_below="@+id/layout_ho_va_ten">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Địa chỉ: "
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/tv_DiaChi_layout_nguoidung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="dia chi o day"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+                    <!--sodienthoai-->
+                    <LinearLayout
+                        android:id="@+id/layout_Noi_dung_quan_cao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_below="@+id/layout_dia_chi">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Số điện thoại:  "
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:id="@+id/tv_SoDienThoai_layout_nguoidung"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="so dien thoai o day"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/layout_relative_2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bạn chưa đăng ký hoặc đăng nhập"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_1"
+            android:text="Hãy đăng ký đăng nhập ngay nhé !"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</RelativeLayout>

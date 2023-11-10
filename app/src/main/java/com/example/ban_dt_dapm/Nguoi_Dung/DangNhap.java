@@ -21,10 +21,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class DangNhap extends AppCompatActivity {
-    SharedPreferences sharedPreferences;
     SharedPreferences sharedPreferences_admin;
-    SharedPreferences sharedPreferences_sdt_nguoi_dung;
-    SharedPreferences sharedPreferences_mat_khau;
+    SharedPreferences sharedPreferences_ten_nguoi_dung;
+    SharedPreferences sharedPreferences_dia_chi_nguoi_dung;
+    SharedPreferences sharedPreferences_so_dien_thoai_nguoi_dung;
+    SharedPreferences sharedPreferences_mat_khau_nguoi_dung;
     EditText sdt_dang_nhapC,mat_khau_dang_nhapC;
     Button button_dangNhapC,button_chua_co_tai_khoan_dang_kyC;
 
@@ -37,10 +38,11 @@ public class DangNhap extends AppCompatActivity {
         button_dangNhapC = findViewById(R.id.button_dangNhap);
         button_chua_co_tai_khoan_dang_kyC = findViewById(R.id.chua_co_tai_khoan_dang_ky);
         // Khởi tạo SharedPreferences
-        sharedPreferences = getSharedPreferences("tennguoidung", MODE_PRIVATE);
-        sharedPreferences_admin = getSharedPreferences("tennguoidung_admin", MODE_PRIVATE);
-        sharedPreferences_sdt_nguoi_dung = getSharedPreferences("sdt_nguoi_dung",MODE_PRIVATE);
-        sharedPreferences_mat_khau = getSharedPreferences("mat_khau_nguoi_dung",MODE_PRIVATE);
+        sharedPreferences_ten_nguoi_dung = getSharedPreferences("ten_nguoi_dung", MODE_PRIVATE);
+        sharedPreferences_admin = getSharedPreferences("ten_nguoi_dung_admin", MODE_PRIVATE);
+        sharedPreferences_so_dien_thoai_nguoi_dung = getSharedPreferences("sdt_nguoi_dung",MODE_PRIVATE);
+        sharedPreferences_mat_khau_nguoi_dung = getSharedPreferences("mat_khau_nguoi_dung",MODE_PRIVATE);
+        sharedPreferences_dia_chi_nguoi_dung = getSharedPreferences("dia_chi_nguoi_dung",MODE_PRIVATE);
         // button
         button_dangNhapC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,21 +108,26 @@ public class DangNhap extends AppCompatActivity {
                         //
                         // Lưu tên người dùng vào SharedPreferences
                         String tenNguoidung = snapshot.child(sdt).child("ten").getValue(String.class);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        SharedPreferences.Editor editor = sharedPreferences_ten_nguoi_dung.edit();
 
                         String sdt_nguoi_dung = snapshot.child(sdt).child("so_dien_thoai").getValue(String.class);
-                        SharedPreferences.Editor editor1 = sharedPreferences_sdt_nguoi_dung.edit();
+                        SharedPreferences.Editor editor1 = sharedPreferences_so_dien_thoai_nguoi_dung.edit();
 
                         String mat_khau_nguoi_dung = snapshot.child(sdt).child("mat_khau").getValue(String.class);
-                        SharedPreferences.Editor editor2 = sharedPreferences_mat_khau.edit();
+                        SharedPreferences.Editor editor2 = sharedPreferences_mat_khau_nguoi_dung.edit();
 
-                        editor.putString("tennguoidung", tenNguoidung);
+                        String dia_chi_nguoi_dung = snapshot.child(sdt).child("dia_chi").getValue(String.class);
+                        SharedPreferences.Editor editor3 = sharedPreferences_dia_chi_nguoi_dung.edit();
+
+                        editor.putString("ten_nguoi_dung", tenNguoidung);
                         editor.putBoolean("loggedIn",true);
                         editor1.putString("sdt_nguoi_dung",sdt_nguoi_dung);
                         editor2.putString("mat_khau_nguoi_dung",mat_khau_nguoi_dung);
+                        editor3.putString("dia_chi_nguoi_dung",dia_chi_nguoi_dung);
                         editor.apply();
                         editor1.apply();
                         editor2.apply();
+                        editor3.apply();
                         finishAffinity();
                         //
                         Intent intent = new Intent(DangNhap.this, DienThoai.class);
@@ -145,7 +152,7 @@ public class DangNhap extends AppCompatActivity {
                                     // Lưu tên người dùng vào SharedPreferences, sau khi đăng nhập, không thể quay về trang đăng nhập
                                     String tenNguoidung = snapshot.child(sdt).child("ten").getValue(String.class);
                                     SharedPreferences.Editor editor = sharedPreferences_admin.edit();
-                                    editor.putString("tennguoidung_admin", tenNguoidung);
+                                    editor.putString("ten_nguoi_dung_admin", tenNguoidung);
                                     editor.putBoolean("loggedIn_admin",true);
                                     editor.apply();
                                     finishAffinity();

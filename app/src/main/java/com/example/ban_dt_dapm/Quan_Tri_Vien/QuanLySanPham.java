@@ -9,10 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.ban_dt_dapm.Cac_Loai_San_Pham.Laptop;
@@ -28,12 +32,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.DecimalFormat;
+
 public class QuanLySanPham extends DrawerBaseActivity {
     ActivityQuanLySanPhamBinding activityQuanLySanPhamBinding;
     ImageView iv_anh_san_phamC;
     Button button_chon_anh_san_phamC, button_luu_san_phamC;
     EditText tv_ten_san_phamC,tv_gia_san_phamC,tv_mo_ta_san_phamC;
     ActivityResultLauncher<Intent> imagePickerLauncher;
+    Spinner spinner_pathC;
     Uri selectedImageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,49 @@ public class QuanLySanPham extends DrawerBaseActivity {
         tv_gia_san_phamC = findViewById(R.id. tv_gia_san_pham);
         tv_ten_san_phamC = findViewById(R.id.tv_ten_san_pham);
         tv_mo_ta_san_phamC = findViewById(R.id.tv_mo_ta_san_pham);
+        //
+        //gia theo vnd
+        tv_gia_san_phamC.addTextChangedListener(new TextWatcher() {
+            String current = "";
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (!editable.toString().equals(current)) {
+                    tv_gia_san_phamC.removeTextChangedListener(this);
+
+                    String cleanString = editable.toString().replaceAll("[,.]", "");
+                    double parsed;
+                    try {
+                        parsed = Double.parseDouble(cleanString);
+                    } catch (NumberFormatException e) {
+                        parsed = 0.0;
+                    }
+
+                    DecimalFormat formatter = new DecimalFormat("#,###.###");
+                    String formatted = formatter.format(parsed);
+                    formatted = formatted.replace(",", ".");
+                    current = formatted;
+
+                    tv_gia_san_phamC.setText(formatted);
+                    tv_gia_san_phamC.setSelection(formatted.length());
+                    tv_gia_san_phamC.addTextChangedListener(this);
+                }
+            }
+        });
+        // spinner
+        spinner_pathC = findViewById(R.id.spinner_path);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.paths_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_pathC.setAdapter(adapter);
         //
         button_chon_anh_san_phamC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,38 +138,66 @@ public class QuanLySanPham extends DrawerBaseActivity {
                                         String imageURL = uri.toString();
                                         // Lưu URL hình ảnh vào Firebase Realtime Database
                                         DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
-                                        DatabaseReference lapTopRef = databaseRef.child("Lap_Top");
+                                        DatabaseReference pathRef;
+                                        String path = spinner_pathC.getSelectedItem().toString();
                                         String tenSP= tv_ten_san_phamC.getText().toString();
                                         String giaSP = tv_gia_san_phamC.getText().toString();
                                         String motaSP = tv_mo_ta_san_phamC.getText().toString();
-                                        lapTopRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL);
-                                                lapTopRef.child(tenSP).setValue(get_set_san_pham);
-                                                Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
-                                                startActivity(intent);
-                                                finishAffinity();
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-                                        /*DatabaseReference imageRefRealtime = lapTopRef.push();
-                                        imageRefRealtime.setValue(imageURL)
-                                                .addOnSuccessListener(aVoid -> {
-                                                    // Lưu thành công
+                                        if (path.equals("Lap Top")) {
+                                            pathRef = databaseRef.child("Lap_Top");
+                                            pathRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","laptop");
+                                                    pathRef.child(tenSP).setValue(get_set_san_pham);
                                                     Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
                                                     startActivity(intent);
                                                     finishAffinity();
-                                                })
-                                                .addOnFailureListener(e -> {
-                                                    // Xử lý khi lưu URL thất bại
-                                                });*/
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        } else if (path.equals("Điện Thoại")) {
+                                            pathRef = databaseRef.child("Dien_Thoai");
+                                            pathRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","dienthoai");
+                                                    pathRef.child(tenSP).setValue(get_set_san_pham);
+                                                    Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
+                                                    startActivity(intent);
+                                                    finishAffinity();
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        } else if (path.equals("Loa")) {
+                                            pathRef = databaseRef.child("Loa");
+                                            pathRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","loa");
+                                                    pathRef.child(tenSP).setValue(get_set_san_pham);
+                                                    Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
+                                                    Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
+                                                    startActivity(intent);
+                                                    finishAffinity();
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+                                        }
                                     });
                                 })
                                 .addOnFailureListener(e -> {

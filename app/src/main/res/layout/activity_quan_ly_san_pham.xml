@@ -86,7 +86,13 @@
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
                 android:layout_marginTop="20dp"/>
-
+            <Spinner
+                android:id="@+id/spinner_path"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:drawablePadding="8dp"
+                android:layout_marginTop="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"/>
             <Button
                 android:id="@+id/button_chon_anh_san_pham"
                 android:layout_width="match_parent"

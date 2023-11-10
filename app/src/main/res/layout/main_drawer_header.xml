@@ -8,10 +8,25 @@
     android:background="@drawable/custom_drawer_header"
     android:id="@+id/relative_header">
     <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:id="@+id/ten_nguoi_dung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Xin Chào aaaaaa"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/layout_2"
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:layout_below="@id/layout_1">
 
         <androidx.cardview.widget.CardView
             android:layout_width="90dp"

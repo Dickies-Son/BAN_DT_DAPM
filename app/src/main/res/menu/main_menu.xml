@@ -9,14 +9,14 @@
     <item android:id="@+id/nav_2" android:title="Laptop"
         android:icon="@drawable/baseline_mui_ten"/>
 
-    <item android:id="@+id/nav_4" android:title="QuanLySanPham"
-        android:icon="@drawable/baseline_mui_ten"/>
 
     <group android:checkableBehavior="single">
-        <item android:title="Đăng xuất">
+        <item android:title="Quản lý">
             <menu>
                 <group>
-                    <item android:id="@+id/nav_3" android:title="Đăng Xuất"
+                    <item android:id="@+id/nav_4" android:title="Quản Lý Sản Phẩm"
+                        android:icon="@drawable/baseline_mui_ten"/>
+                    <item android:id="@+id/nav_5" android:title="Danh Sách Tài Khoản"
                         android:icon="@drawable/baseline_mui_ten"/>
                 </group>
             </menu>

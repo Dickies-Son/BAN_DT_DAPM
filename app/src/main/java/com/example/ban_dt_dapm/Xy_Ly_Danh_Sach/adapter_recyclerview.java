@@ -18,10 +18,11 @@ import java.util.ArrayList;
 public class adapter_recyclerview extends RecyclerView.Adapter<adapter_recyclerview.UserViewHolder> {
     ArrayList<get_set_san_pham> lstGetSet;
     Context context;
+    UserCallback userCallback;
 
-    public adapter_recyclerview(ArrayList<get_set_san_pham> lstGetSet, Context context) {
+    public adapter_recyclerview(ArrayList<get_set_san_pham> lstGetSet, UserCallback userCallback) {
         this.lstGetSet = lstGetSet;
-        this.context = context;
+        this.userCallback = userCallback;
     }
 
     @NonNull
@@ -41,6 +42,12 @@ public class adapter_recyclerview extends RecyclerView.Adapter<adapter_recyclerv
         get_set_san_pham item = lstGetSet.get(position);
         holder.Tv_TenSanPhamC.setText(item.getTenSP());
         holder.Tv_GiaSanPhamC.setText(item.getGiaTien());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userCallback.onItemClick(item.getGiaTien(),item.getHinhAnh(),item.getTenSP(),item.getMoTa());
+            }
+        });
         Picasso.get().load(item.getHinhAnh()).into(holder.Iv_HinhAnhSanPhamC);
     }
 
@@ -58,5 +65,8 @@ public class adapter_recyclerview extends RecyclerView.Adapter<adapter_recyclerv
             Tv_TenSanPhamC = itemView.findViewById(R.id.Tv_TenSanPham);
             Iv_HinhAnhSanPhamC =itemView.findViewById(R.id.Iv_HinhAnhSanPham);
         }
+    }
+    public interface UserCallback{
+        void onItemClick(String giaTien, String hinhAnh, String tenSP, String moTa);
     }
 }

@@ -2,4 +2,10 @@
     <string name="app_name">BAN_DT_DAPM</string>
     <string name="menu_drawer_open">Drawer Open</string>
     <string name="menu_drawer_close">Drawer Close</string>
+    <string-array name="paths_array">
+        <item>Lap Top</item>
+        <item>Điện Thoại</item>
+        <item>Loa</item>
+        <!-- Thêm các path khác nếu cần -->
+    </string-array>
 </resources>
