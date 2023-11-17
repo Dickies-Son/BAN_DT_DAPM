@@ -7,14 +7,24 @@ public class get_set_san_pham {
     String loaiSP;
     String hinhAnh;
     String soLuong;
+    String idSP;
 
-    public get_set_san_pham(String tenSP, String moTa, String giaTien, String hinhAnh,String soLuong,String loaiSP) {
+    public get_set_san_pham(String tenSP, String moTa, String giaTien, String hinhAnh,String soLuong,String loaiSP,String idSP) {
         this.loaiSP = loaiSP;
         this.tenSP = tenSP;
         this.moTa = moTa;
         this.giaTien = giaTien;
         this.hinhAnh = hinhAnh;
         this.soLuong = soLuong;
+        this.idSP = idSP;
+    }
+
+    public String getIdSP() {
+        return idSP;
+    }
+
+    public void setIdSP(String idSP) {
+        this.idSP = idSP;
     }
 
     public String getLoaiSP() {

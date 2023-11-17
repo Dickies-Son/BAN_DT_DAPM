@@ -31,6 +31,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
                     android:textSize="17dp"
                     android:text="Ten san pham o day"/>
 
@@ -40,6 +42,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/Tv_TenSanPham"
                     android:textStyle="bold"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:textSize="17dp"
                     android:text="100000"/>
             </RelativeLayout>

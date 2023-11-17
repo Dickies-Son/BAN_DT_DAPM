@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Cac_Loai_San_Pham.Laptop">
+    tools:context=".Quan_Tri_Vien.DanhSachDatHang">
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView_lap_top"
+        android:id="@+id/searchView_danh_sach_dat_hang"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_margin="8dp"
@@ -17,9 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="Tìm kiếm ..." />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvList1"
+        android:id="@+id/rvList_danh_sach_dat_hang_admin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -28,8 +27,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView_lap_top"
+        app:layout_constraintTop_toBottomOf="@+id/searchView_danh_sach_dat_hang"
         app:layout_constraintVertical_bias="1.0" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

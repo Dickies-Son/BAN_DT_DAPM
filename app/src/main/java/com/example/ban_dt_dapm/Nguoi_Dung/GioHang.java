@@ -60,7 +60,8 @@ public class GioHang extends DrawerBaseActivity {
                     String hinhAnh = snapshot.child("hinhAnh").getValue(String.class);
                     String moTa = snapshot.child("moTa").getValue(String.class);
                     String soLuong = snapshot.child("soLuong").getValue(String.class);
-                    get_set_san_pham sanPham = new get_set_san_pham(tenSP,moTa,giaTien,hinhAnh,soLuong,"");
+                    String idSP = snapshot.child("idSP").getValue(String.class);
+                    get_set_san_pham sanPham = new get_set_san_pham(tenSP,moTa,giaTien,hinhAnh,soLuong,"",idSP);
                     lstGetSetC.add(sanPham);
                 }
                 adapter_recyclerviewC.notifyDataSetChanged(); // Cập nhật RecyclerView khi có thay đổi dữ liệu

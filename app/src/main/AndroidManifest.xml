@@ -12,6 +12,15 @@
         android:theme="@style/Theme.BAN_DT_DAPM"
         tools:targetApi="31">
         <activity
+            android:name=".Loa"
+            android:exported="false" />
+        <activity
+            android:name=".Quan_Tri_Vien.DanhSachXacNhan"
+            android:exported="false" />
+        <activity
+            android:name=".Quan_Tri_Vien.DanhSachDatHang"
+            android:exported="false" />
+        <activity
             android:name=".Nguoi_Dung.DatHang"
             android:exported="false" />
         <activity

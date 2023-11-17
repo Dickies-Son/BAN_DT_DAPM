@@ -49,6 +49,7 @@ public class chi_tiet_san_pham extends DrawerBaseActivity {
         String hinhAnh = i.getStringExtra("hinhAnh");
         String tenSP = i.getStringExtra("tenSP");
         String moTa = i.getStringExtra("moTa");
+        String idSP = i.getStringExtra("idSP");
 
         ten_sp_chitietC.setText(tenSP);
         gia_sp_chitietC.setText(giaTien);
@@ -75,10 +76,10 @@ public class chi_tiet_san_pham extends DrawerBaseActivity {
                                     .child(sodienthoaiaa)
                                     .child("GioHang");
                             // Tạo đối tượng SanPham
-                            get_set_san_pham sanPham = new get_set_san_pham(tenSP, moTa, giaTien,hinhAnh, "","");
+                            get_set_san_pham sanPham = new get_set_san_pham(tenSP, moTa, giaTien,hinhAnh, "","",idSP);
                             sanPham.setSoLuong("1"); // Mặc định số lượng là 1
                             // Thêm sản phẩm vào giỏ hàng
-                            gioHangRef.child(tenSP).setValue(sanPham)
+                            gioHangRef.child(idSP).setValue(sanPham)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

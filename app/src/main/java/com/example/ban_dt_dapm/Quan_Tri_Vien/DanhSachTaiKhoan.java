@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import androidx.appcompat.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.ban_dt_dapm.R;
 import com.example.ban_dt_dapm.Xu_Ly_Giao_Dien.DrawerBaseActivity;
@@ -25,6 +27,7 @@ public class DanhSachTaiKhoan extends DrawerBaseActivity {
     RecyclerView rvListC;
     ArrayList<get_set_nguoi_dung> lstGetSetC;
     adapter_danh_sach_tai_khoan adapter_recyclerview;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

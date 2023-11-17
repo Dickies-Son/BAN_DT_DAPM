@@ -33,6 +33,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.text.DecimalFormat;
+import java.util.UUID;
 
 public class QuanLySanPham extends DrawerBaseActivity {
     ActivityQuanLySanPhamBinding activityQuanLySanPhamBinding;
@@ -47,7 +48,7 @@ public class QuanLySanPham extends DrawerBaseActivity {
         super.onCreate(savedInstanceState);
         activityQuanLySanPhamBinding = ActivityQuanLySanPhamBinding.inflate(getLayoutInflater());
         setContentView(activityQuanLySanPhamBinding.getRoot());
-        allocateActivityTitle("Them san pham");
+        allocateActivityTitle("Thêm sản phẩm");
         //
         iv_anh_san_phamC =findViewById(R.id.iv_anh_san_pham);
         button_chon_anh_san_phamC = findViewById(R.id.button_chon_anh_san_pham);
@@ -143,13 +144,14 @@ public class QuanLySanPham extends DrawerBaseActivity {
                                         String tenSP= tv_ten_san_phamC.getText().toString();
                                         String giaSP = tv_gia_san_phamC.getText().toString();
                                         String motaSP = tv_mo_ta_san_phamC.getText().toString();
+                                        String idSP = UUID.randomUUID().toString();
                                         if (path.equals("Lap Top")) {
                                             pathRef = databaseRef.child("Lap_Top");
                                             pathRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","laptop");
-                                                    pathRef.child(tenSP).setValue(get_set_san_pham);
+                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","laptop",idSP);
+                                                    pathRef.child(idSP).setValue(get_set_san_pham);
                                                     Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
                                                     startActivity(intent);
@@ -166,8 +168,8 @@ public class QuanLySanPham extends DrawerBaseActivity {
                                             pathRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","dienthoai");
-                                                    pathRef.child(tenSP).setValue(get_set_san_pham);
+                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","dienthoai",idSP);
+                                                    pathRef.child(idSP).setValue(get_set_san_pham);
                                                     Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
                                                     startActivity(intent);
@@ -184,8 +186,8 @@ public class QuanLySanPham extends DrawerBaseActivity {
                                             pathRef.child(tenSP).addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","loa");
-                                                    pathRef.child(tenSP).setValue(get_set_san_pham);
+                                                    get_set_san_pham get_set_san_pham = new get_set_san_pham(tenSP,motaSP,giaSP,imageURL,"","loa",idSP);
+                                                    pathRef.child(idSP).setValue(get_set_san_pham);
                                                     Toast.makeText(QuanLySanPham.this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(QuanLySanPham.this, Laptop.class);
                                                     startActivity(intent);

@@ -82,7 +82,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             android:layout_below="@id/relative_layout_nguoidung_1">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                         android:id="@+id/layout_contact"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp">
                         <TextView
                             android:layout_width="wrap_content"
@@ -139,7 +139,7 @@
                         android:id="@+id/layout_dia_chi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_below="@+id/layout_ho_va_ten">
@@ -163,7 +163,7 @@
                         android:id="@+id/layout_Noi_dung_quan_cao"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_below="@+id/layout_dia_chi">
@@ -182,6 +182,26 @@
                             android:textColor="@color/black"
                             android:textSize="18sp"/>
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layout_cac_don_hang_da_dat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@id/layout_Noi_dung_quan_cao">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:text="Các đơn hàng của bạn:" />
+                    </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/rvList_danh_sach_dat_hang_nguoi_dung"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/layout_cac_don_hang_da_dat"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
         </RelativeLayout>

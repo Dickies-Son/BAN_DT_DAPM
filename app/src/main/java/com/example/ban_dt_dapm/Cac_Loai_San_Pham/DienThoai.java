@@ -2,6 +2,7 @@ package com.example.ban_dt_dapm.Cac_Loai_San_Pham;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.ban_dt_dapm.R;
 import com.example.ban_dt_dapm.Xu_Ly_Giao_Dien.DrawerBaseActivity;
@@ -34,6 +36,7 @@ public class DienThoai extends DrawerBaseActivity implements adapter_recyclervie
     SharedPreferences sharedPreferences_admin;
     SharedPreferences sharedPreferences_ten_nguoi_dung;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +44,7 @@ public class DienThoai extends DrawerBaseActivity implements adapter_recyclervie
         setContentView(activityDienThoaiBinding.getRoot());
         allocateActivityTitle("Trang Bán Điện Thoại");
         //
-        rvListC = findViewById(R.id.rvList);
+        rvListC = findViewById(R.id.rvList2);
         sharedPreferences_ten_nguoi_dung = getSharedPreferences("ten_nguoi_dung",MODE_PRIVATE);
         String tennguoidung = sharedPreferences_ten_nguoi_dung.getString("ten_nguoi_dung","");
         sharedPreferences_admin = getSharedPreferences("ten_nguoi_dung_admin",MODE_PRIVATE);
@@ -79,7 +82,8 @@ public class DienThoai extends DrawerBaseActivity implements adapter_recyclervie
                     String giaTien = dataSnapshot.child("giaTien").getValue(String.class);
                     String hinhAnh = dataSnapshot.child("hinhAnh").getValue(String.class);
                     String motaSP = dataSnapshot.child("moTa").getValue(String.class);
-                    get_set_san_pham sanPham = new get_set_san_pham(tenSP, motaSP, giaTien, hinhAnh,"","");
+                    String idSP = dataSnapshot.child("idSP").getValue(String.class);
+                    get_set_san_pham sanPham = new get_set_san_pham(tenSP, motaSP, giaTien, hinhAnh,"","",idSP);
                     lstGetSetC.add(sanPham);
                 }
                 if (tennguoidung_admin.isEmpty()){
@@ -96,12 +100,13 @@ public class DienThoai extends DrawerBaseActivity implements adapter_recyclervie
     }
 
     @Override
-    public void onItemClick(String giaTien, String hinhAnh, String tenSP, String moTa) {
+    public void onItemClick(String giaTien, String hinhAnh, String tenSP, String moTa,String idSP) {
         Intent i = new Intent(DienThoai.this, chi_tiet_san_pham.class);
         i.putExtra("giaTien",giaTien);
         i.putExtra("hinhAnh",hinhAnh);
         i.putExtra("tenSP",tenSP);
         i.putExtra("moTa",moTa);
+        i.putExtra("idSP", idSP);
         startActivity(i);
     }
 }

@@ -11,8 +11,9 @@ public class get_set_dat_hang {
     String loaiSP;
     String hinhAnh;
     String soLuong;
+    String idSP;
 
-    public get_set_dat_hang(String ten, String so_dien_thoai, String mat_khau, String dia_chi, String tenSP, String moTa, String giaTien, String loaiSP, String hinhAnh, String soLuong) {
+    public get_set_dat_hang(String ten, String so_dien_thoai, String mat_khau, String dia_chi, String tenSP, String moTa, String giaTien, String loaiSP, String hinhAnh, String soLuong, String idSP) {
         this.ten = ten;
         this.so_dien_thoai = so_dien_thoai;
         this.mat_khau = mat_khau;
@@ -23,6 +24,15 @@ public class get_set_dat_hang {
         this.loaiSP = loaiSP;
         this.hinhAnh = hinhAnh;
         this.soLuong = soLuong;
+        this.idSP = idSP;
+    }
+
+    public String getIdSP() {
+        return idSP;
+    }
+
+    public void setIdSP(String idSP) {
+        this.idSP = idSP;
     }
 
     public String getTen() {

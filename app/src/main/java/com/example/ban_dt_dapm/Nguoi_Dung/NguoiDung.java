@@ -1,6 +1,9 @@
 package com.example.ban_dt_dapm.Nguoi_Dung;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +17,16 @@ import android.widget.Toast;
 import com.example.ban_dt_dapm.Cac_Loai_San_Pham.DienThoai;
 import com.example.ban_dt_dapm.R;
 import com.example.ban_dt_dapm.Xu_Ly_Giao_Dien.DrawerBaseActivity;
+import com.example.ban_dt_dapm.Xy_Ly_Danh_Sach.adapter_danh_sach_dat_hang;
+import com.example.ban_dt_dapm.Xy_Ly_Danh_Sach.get_set_dat_hang;
 import com.example.ban_dt_dapm.databinding.ActivityNguoiDungBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class NguoiDung extends DrawerBaseActivity {
     ActivityNguoiDungBinding activityNguoiDungBinding;
@@ -26,6 +38,9 @@ public class NguoiDung extends DrawerBaseActivity {
     SharedPreferences sharedPreferences_dia_chi_nguoi_dung;
     SharedPreferences sharedPreferences_so_dien_thoai_nguoi_dung;
     SharedPreferences sharedPreferences_mat_khau_nguoi_dung;
+    RecyclerView rvListC;
+    ArrayList<get_set_dat_hang> lstGetSetC;
+    adapter_danh_sach_dat_hang adapter_recyclerview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +56,15 @@ public class NguoiDung extends DrawerBaseActivity {
         tv_SoDienThoai_layout_nguoidungC = findViewById(R.id.tv_SoDienThoai_layout_nguoidung);
         button_dangxuat_layout_nguoidungC = findViewById(R.id.button_dangxuat_layout_nguoidung);
         button_chinhsua_layout_nguoidungC = findViewById(R.id.button_chinhsua_layout_nguoidung);
+        //
+        AnhXa();
+        //
+        rvListC = findViewById(R.id.rvList_danh_sach_dat_hang_nguoi_dung);
+        lstGetSetC = new ArrayList<>();
+        adapter_recyclerview = new adapter_danh_sach_dat_hang(lstGetSetC,this);
+        LinearLayoutManager linearLayoutManager =new LinearLayoutManager(NguoiDung.this,LinearLayoutManager.HORIZONTAL,false);
+        rvListC.setAdapter(adapter_recyclerview);
+        rvListC.setLayoutManager(linearLayoutManager);
         //
         sharedPreferences_ten_nguoi_dung = getSharedPreferences("ten_nguoi_dung",MODE_PRIVATE);
         String tennguoidung = sharedPreferences_ten_nguoi_dung.getString("ten_nguoi_dung","");
@@ -108,5 +132,86 @@ public class NguoiDung extends DrawerBaseActivity {
                 finishAffinity();
             }
         });
+    }
+   // danh sach dat hang
+    private void AnhXa() {
+        sharedPreferences_so_dien_thoai_nguoi_dung = getSharedPreferences("sdt_nguoi_dung",MODE_PRIVATE);
+        String sodienthoai = sharedPreferences_so_dien_thoai_nguoi_dung.getString("sdt_nguoi_dung","");
+        // Lấy dữ liệu từ Firebase Realtime Database
+        DatabaseReference nguoiDungRef = FirebaseDatabase.getInstance().getReference("Nguoi_Dung").child(sodienthoai);
+        nguoiDungRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    DatabaseReference datHangRef = snapshot.child("DatHang").getRef();
+                    datHangRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                                String tenSP = userSnapshot.child("tenSP").getValue(String.class);
+                                String soLuong = userSnapshot.child("soLuong").getValue(String.class);
+                                String giaTien = userSnapshot.child("giaTien").getValue(String.class);
+                                String idSP = userSnapshot.child("idSP").getValue(String.class);
+                                String hinhAnh = userSnapshot.child("hinhAnh").getValue(String.class);
+                                String moTa = userSnapshot.child("moTa").getValue(String.class);
+                                get_set_dat_hang nguoiDung = new get_set_dat_hang("","","","",tenSP,moTa,giaTien,"",hinhAnh,soLuong,idSP);
+                                lstGetSetC.add(nguoiDung);
+                                // Log.d("FirebaseData", "Data: " + lstGetSetC.toString());
+                            }
+                            adapter_recyclerview.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    DatabaseReference XacNhanRef = snapshot.child("DaXacNhan").getRef();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        DatabaseReference nguoiDungRef1 = FirebaseDatabase.getInstance().getReference("Nguoi_Dung").child(sodienthoai);
+        nguoiDungRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    DatabaseReference datHangRef = snapshot.child("DaXacNhan").getRef();
+                    datHangRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                                String tenSP = userSnapshot.child("tenSP").getValue(String.class);
+                                String soLuong = userSnapshot.child("soLuong").getValue(String.class);
+                                String giaTien = userSnapshot.child("giaTien").getValue(String.class);
+                                String idSP = userSnapshot.child("idSP").getValue(String.class);
+                                String hinhAnh = userSnapshot.child("hinhAnh").getValue(String.class);
+                                String moTa = userSnapshot.child("moTa").getValue(String.class);
+                                get_set_dat_hang nguoiDung = new get_set_dat_hang("","","","",tenSP,moTa,giaTien,"",hinhAnh,soLuong,idSP);
+                                lstGetSetC.add(nguoiDung);
+                                // Log.d("FirebaseData", "Data: " + lstGetSetC.toString());
+                            }
+                            adapter_recyclerview.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    DatabaseReference XacNhanRef = snapshot.child("DaXacNhan").getRef();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }

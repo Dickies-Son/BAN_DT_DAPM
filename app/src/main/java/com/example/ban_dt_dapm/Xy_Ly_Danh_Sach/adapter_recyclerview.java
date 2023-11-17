@@ -24,7 +24,10 @@ public class adapter_recyclerview extends RecyclerView.Adapter<adapter_recyclerv
         this.lstGetSet = lstGetSet;
         this.userCallback = userCallback;
     }
-
+    public void setFilteredList(ArrayList<get_set_san_pham> filteredList) {
+        this.lstGetSet = filteredList;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public adapter_recyclerview.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,7 +48,7 @@ public class adapter_recyclerview extends RecyclerView.Adapter<adapter_recyclerv
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                userCallback.onItemClick(item.getGiaTien(),item.getHinhAnh(),item.getTenSP(),item.getMoTa());
+                userCallback.onItemClick(item.getGiaTien(),item.getHinhAnh(),item.getTenSP(),item.getMoTa(),item.getIdSP());
             }
         });
         Picasso.get().load(item.getHinhAnh()).into(holder.Iv_HinhAnhSanPhamC);
@@ -67,6 +70,6 @@ public class adapter_recyclerview extends RecyclerView.Adapter<adapter_recyclerv
         }
     }
     public interface UserCallback{
-        void onItemClick(String giaTien, String hinhAnh, String tenSP, String moTa);
+        void onItemClick(String giaTien, String hinhAnh, String tenSP, String moTa,String idSP);
     }
 }

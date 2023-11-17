@@ -61,6 +61,7 @@ public class DatHang extends DrawerBaseActivity {
         String hinhAnh = i.getStringExtra("hinhAnh_dat_hang");
         String tenSP = i.getStringExtra("tenSP_dat_hang");
         String soLuong = i.getStringExtra("soLuong_dat_hang");
+        String idSP = i.getStringExtra("idSP_dat_hang");
         tvGia_sp_dat_hangC.setText(giaTien);
         tvTen_sp_dat_hangC.setText(tenSP);
         tvSoluong_sp_dat_hangC.setText(soLuong);
@@ -112,13 +113,18 @@ public class DatHang extends DrawerBaseActivity {
                                     .child(sodienthoaiaa)
                                     .child("DatHang");
                             // Tạo đối tượng SanPham
-                            get_set_dat_hang sanPham = new get_set_dat_hang(tennguoidung,sodienthoai,"",diachinguoidung,tenSP,"",giaTienC,"",hinhAnh,soLuong);
-                            sanPham.setMoTa("Chờ Thanh Toán");
+                            get_set_dat_hang sanPham = new get_set_dat_hang(tennguoidung,sodienthoai,"",diachinguoidung,tenSP,"",giaTienC,"",hinhAnh,soLuong,idSP);
+                            sanPham.setMoTa("Chờ Xác Nhận");
                             // Thêm sản phẩm vào giỏ hàng
-                            gioHangRef.child(tenSP).setValue(sanPham)
+                            gioHangRef.child(idSP).setValue(sanPham)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
+                                            DatabaseReference ref1 = FirebaseDatabase.getInstance().getReference("Nguoi_Dung")
+                                                    .child(sodienthoaiaa)
+                                                    .child("GioHang")
+                                                    .child(idSP);
+                                            ref1.removeValue();
                                             Toast.makeText(DatHang.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                                         }
                                     })

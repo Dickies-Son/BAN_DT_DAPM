@@ -68,7 +68,7 @@ public class adapter_gio_hang extends RecyclerView.Adapter<adapter_gio_hang.User
                 DatabaseReference gioHangRef = databaseReference.child("Nguoi_Dung")
                         .child(sodienthoai)
                         .child("GioHang")
-                        .child(item.getTenSP())
+                        .child(item.getIdSP())
                         .child("soLuong");
                 // Cập nhật số lượng sản phẩm trên Firebase
                 gioHangRef.setValue(String.valueOf(soLuong));
@@ -89,7 +89,7 @@ public class adapter_gio_hang extends RecyclerView.Adapter<adapter_gio_hang.User
                     DatabaseReference gioHangRef = databaseReference.child("Nguoi_Dung")
                             .child(sodienthoai)
                             .child("GioHang")
-                            .child(item.getTenSP())
+                            .child(item.getIdSP())
                             .child("soLuong");
                     // Cập nhật số lượng sản phẩm trên Firebase
                     gioHangRef.setValue(String.valueOf(soLuong));
@@ -110,7 +110,7 @@ public class adapter_gio_hang extends RecyclerView.Adapter<adapter_gio_hang.User
                     DatabaseReference gioHangRef = FirebaseDatabase.getInstance().getReference()
                             .child("Nguoi_Dung")
                             .child(sodienthoai)
-                            .child("GioHang").child(item.getTenSP());
+                            .child("GioHang").child(item.getIdSP());
                     gioHangRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -138,6 +138,7 @@ public class adapter_gio_hang extends RecyclerView.Adapter<adapter_gio_hang.User
                 intent.putExtra("giaTien_dat_hang", item.getGiaTien());
                 intent.putExtra("hinhAnh_dat_hang",item.getHinhAnh());
                 intent.putExtra("soLuong_dat_hang", item.getSoLuong());
+                intent.putExtra("idSP_dat_hang",item.getIdSP());
                 view.getContext().startActivity(intent);
             }
         });

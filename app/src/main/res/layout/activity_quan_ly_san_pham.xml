@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Quan_Tri_Vien.QuanLySanPham"
     android:background="@drawable/background_dang_anh">
     <androidx.cardview.widget.CardView
@@ -69,6 +69,7 @@
                 android:drawablePadding="8dp"
                 android:hint="Nhập giá tiền sản phẩm"
                 android:textSize="15dp"
+                android:inputType="number"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
@@ -112,5 +113,4 @@
                 app:cornerRadius = "20dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </ScrollView>

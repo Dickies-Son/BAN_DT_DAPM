@@ -63,16 +63,12 @@ public class adapter_danh_sach_san_pham_admin extends RecyclerView.Adapter<adapt
                                     notifyItemRemoved(position);
                                     notifyItemRangeChanged(position, lstGetSet.size());
                                     // Xóa tài khoản tương ứng trong Firebase Realtime Database
-                                    if (item.getLoaiSP().equals("dienthoai")) {
-                                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Dien_Thoai").child(item.getTenSP());
-                                        ref.removeValue();
-                                    } else if (item.getLoaiSP().equals("laptop")) {
-                                        DatabaseReference ref_1 = FirebaseDatabase.getInstance().getReference("Lap_Top").child(item.getTenSP());
-                                        ref_1.removeValue();
-                                    } else if (item.getLoaiSP().equals("loa")) {
-                                        DatabaseReference ref_2 = FirebaseDatabase.getInstance().getReference("Loa").child(item.getTenSP());
-                                        ref_2.removeValue();
-                                    }
+                                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Dien_Thoai").child(item.getIdSP());
+                                    ref.removeValue();
+                                    DatabaseReference ref_1 = FirebaseDatabase.getInstance().getReference("Lap_Top").child(item.getIdSP());
+                                    ref_1.removeValue();
+                                    DatabaseReference ref_2 = FirebaseDatabase.getInstance().getReference("Loa").child(item.getIdSP());
+                                    ref_2.removeValue();
                                     Toast.makeText(context, "Đã xóa sản phẩm thành công", Toast.LENGTH_SHORT).show();
                                 }
                             })
